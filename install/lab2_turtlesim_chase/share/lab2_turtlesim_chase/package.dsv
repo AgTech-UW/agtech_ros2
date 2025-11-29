@@ -1,0 +1,6 @@
+source;share/lab2_turtlesim_chase/hook/pythonpath.ps1
+source;share/lab2_turtlesim_chase/hook/pythonpath.dsv
+source;share/lab2_turtlesim_chase/hook/pythonpath.sh
+source;share/lab2_turtlesim_chase/hook/ament_prefix_path.ps1
+source;share/lab2_turtlesim_chase/hook/ament_prefix_path.dsv
+source;share/lab2_turtlesim_chase/hook/ament_prefix_path.sh

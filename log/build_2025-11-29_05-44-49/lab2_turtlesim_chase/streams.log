@@ -1,0 +1,36 @@
+[1.441s] Invoking command in '/workspaces/agtech_ros2/src/lab2_turtlesim_chase': PYTHONPATH=/workspaces/agtech_ros2/build/lab2_turtlesim_chase/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/lab2_turtlesim_chase build --build-base /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build install --record /workspaces/agtech_ros2/build/lab2_turtlesim_chase/install.log --single-version-externally-managed install_data
+[2.177s] running egg_info
+[2.181s] creating ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info
+[2.186s] writing ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/PKG-INFO
+[2.196s] writing dependency_links to ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/dependency_links.txt
+[2.203s] writing entry points to ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/entry_points.txt
+[2.209s] writing requirements to ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/requires.txt
+[2.213s] writing top-level names to ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/top_level.txt
+[2.221s] writing manifest file '../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/SOURCES.txt'
+[2.255s] reading manifest file '../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/SOURCES.txt'
+[2.310s] writing manifest file '../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info/SOURCES.txt'
+[2.313s] running build
+[2.314s] running build_py
+[2.320s] creating /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build
+[2.322s] creating /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build/lib
+[2.326s] creating /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build/lib/lab2_turtlesim_chase
+[2.336s] copying lab2_turtlesim_chase/draw_square.py -> /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build/lib/lab2_turtlesim_chase
+[2.359s] copying lab2_turtlesim_chase/__init__.py -> /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build/lib/lab2_turtlesim_chase
+[2.375s] running install
+[2.375s] running install_lib
+[2.400s] creating /workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2_turtlesim_chase
+[2.417s] copying /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build/lib/lab2_turtlesim_chase/draw_square.py -> /workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2_turtlesim_chase
+[2.453s] copying /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build/lib/lab2_turtlesim_chase/__init__.py -> /workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2_turtlesim_chase
+[2.490s] byte-compiling /workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2_turtlesim_chase/draw_square.py to draw_square.cpython-310.pyc
+[2.533s] byte-compiling /workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2_turtlesim_chase/__init__.py to __init__.cpython-310.pyc
+[2.568s] running install_data
+[2.576s] creating /workspaces/agtech_ros2/install/lab2_turtlesim_chase/share/ament_index
+[2.579s] creating /workspaces/agtech_ros2/install/lab2_turtlesim_chase/share/ament_index/resource_index
+[2.581s] creating /workspaces/agtech_ros2/install/lab2_turtlesim_chase/share/ament_index/resource_index/packages
+[2.593s] copying resource/lab2_turtlesim_chase -> /workspaces/agtech_ros2/install/lab2_turtlesim_chase/share/ament_index/resource_index/packages
+[2.618s] copying package.xml -> /workspaces/agtech_ros2/install/lab2_turtlesim_chase/share/lab2_turtlesim_chase
+[2.632s] running install_egg_info
+[2.650s] Copying ../../build/lab2_turtlesim_chase/lab2_turtlesim_chase.egg-info to /workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2_turtlesim_chase-0.0.0-py3.10.egg-info
+[2.907s] running install_scripts
+[2.984s] writing list of installed files to '/workspaces/agtech_ros2/build/lab2_turtlesim_chase/install.log'
+[3.007s] Invoked command in '/workspaces/agtech_ros2/src/lab2_turtlesim_chase' returned '0': PYTHONPATH=/workspaces/agtech_ros2/build/lab2_turtlesim_chase/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/workspaces/agtech_ros2/install/lab2_turtlesim_chase/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/lab2_turtlesim_chase build --build-base /workspaces/agtech_ros2/build/lab2_turtlesim_chase/build install --record /workspaces/agtech_ros2/build/lab2_turtlesim_chase/install.log --single-version-externally-managed install_data
