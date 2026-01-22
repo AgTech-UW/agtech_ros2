@@ -1,9 +1,0 @@
-source;share/lab5_vision/hook/pythonpath.ps1
-source;share/lab5_vision/hook/pythonpath.dsv
-source;share/lab5_vision/hook/pythonpath.sh
-source;share/lab5_vision/hook/ament_prefix_path.ps1
-source;share/lab5_vision/hook/ament_prefix_path.dsv
-source;share/lab5_vision/hook/ament_prefix_path.sh
-source;../../build/lab5_vision/share/lab5_vision/hook/pythonpath_develop.ps1
-source;../../build/lab5_vision/share/lab5_vision/hook/pythonpath_develop.dsv
-source;../../build/lab5_vision/share/lab5_vision/hook/pythonpath_develop.sh
