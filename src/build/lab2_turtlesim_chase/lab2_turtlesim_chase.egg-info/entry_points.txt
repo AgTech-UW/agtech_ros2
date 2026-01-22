@@ -1,0 +1,3 @@
+[console_scripts]
+draw_square = lab2_turtlesim_chase.draw_square:main
+
