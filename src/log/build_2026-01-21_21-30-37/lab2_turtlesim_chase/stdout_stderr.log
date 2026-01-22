@@ -1,0 +1,22 @@
+running develop
+running egg_info
+creating lab2_turtlesim_chase.egg-info
+writing lab2_turtlesim_chase.egg-info/PKG-INFO
+writing dependency_links to lab2_turtlesim_chase.egg-info/dependency_links.txt
+writing entry points to lab2_turtlesim_chase.egg-info/entry_points.txt
+writing requirements to lab2_turtlesim_chase.egg-info/requires.txt
+writing top-level names to lab2_turtlesim_chase.egg-info/top_level.txt
+writing manifest file 'lab2_turtlesim_chase.egg-info/SOURCES.txt'
+reading manifest file 'lab2_turtlesim_chase.egg-info/SOURCES.txt'
+writing manifest file 'lab2_turtlesim_chase.egg-info/SOURCES.txt'
+running build_ext
+Creating /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/lib/python3.10/site-packages/lab2-turtlesim-chase.egg-link (link to .)
+Installing draw_square script to /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/lib/lab2_turtlesim_chase
+
+Installed /workspaces/agtech_ros2/src/build/lab2_turtlesim_chase
+running symlink_data
+creating /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/share/ament_index
+creating /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/share/ament_index/resource_index
+creating /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/share/ament_index/resource_index/packages
+symbolically linking /workspaces/agtech_ros2/src/build/lab2_turtlesim_chase/resource/lab2_turtlesim_chase -> /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/share/ament_index/resource_index/packages
+symbolically linking /workspaces/agtech_ros2/src/build/lab2_turtlesim_chase/package.xml -> /workspaces/agtech_ros2/src/install/lab2_turtlesim_chase/share/lab2_turtlesim_chase
