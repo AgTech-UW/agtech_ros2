@@ -4,3 +4,4 @@ log/
 __pycache__/
 *.pyc
 *_key.py
+src/lab3_safety_brake/

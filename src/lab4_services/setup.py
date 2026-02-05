@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'lab3_safety_brake'
+package_name = 'lab4_services'
 
 setup(
     name=package_name,
@@ -14,7 +14,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='root',
-    maintainer_email='ge.dyck@uwinnnipeg.ca',
+    maintainer_email='ge.dyck@uwinnipeg.ca',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={
@@ -23,9 +23,7 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [
-            'safety_stop = lab3_safety_brake.safety_stop:main',
-            'safety_turn_key = lab3_safety_brake.safety_turn_key:main',
+        'console_scripts': [ 'spawn_crop = lab4_services.spawn_crop:main',
         ],
     },
 )
