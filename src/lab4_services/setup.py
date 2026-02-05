@@ -14,7 +14,7 @@ setup(
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='root',
-    maintainer_email='ge.dyck@uwinnipeg.ca',
+    maintainer_email='root@todo.todo',
     description='TODO: Package description',
     license='TODO: License declaration',
     extras_require={
@@ -23,7 +23,9 @@ setup(
         ],
     },
     entry_points={
-        'console_scripts': [ 'spawn_crop = lab4_services.spawn_crop:main',
+        'console_scripts': [
+            'spawn_crop = lab4_services.spawn_crop:main',
+            'seed_field = lab4_services.seed_field:main',
         ],
     },
 )
