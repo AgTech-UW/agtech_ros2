@@ -18,7 +18,7 @@
   "runArgs": [
       "--net=host",
       "--privileged",
-      "--device=/dev/video2:/dev/video2", 
+      "--device=/dev/video0:/dev/video0", 
       "--shm-size=512m"
   ],
   "postCreateCommand": "echo 'source /opt/ros/humble/setup.bash' >> /root/.bashrc && mkdir -p /root/mystery_folder/level_1 && echo 'CODE: KERNEL_OF_TRUTH' > /root/mystery_folder/level_1/.hidden_payload.txt"

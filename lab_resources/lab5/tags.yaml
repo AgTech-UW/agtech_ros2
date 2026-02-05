@@ -2,6 +2,11 @@ apriltag:
   ros__parameters:
     image_transport: raw    # Listen to raw image topic
     family: 36h11           # The standard tag family
-    size: 0.05              # 5cm tag size (Measure your printout!)
+    size: 0.150             # 5cm tag size (Measure your printout!)
     max_hamming: 0          # Error correction strictness
     z_up: true              # Point Z axis up (instead of into the tag)
+        # --- PARAMETERS TO TUNE ---
+    #decimate: 2.0   # 1.0 = Full Res, 2.0 = Half Res (Faster)
+    #threads: 4      # Use more CPU cores
+    #refine_edges: 0 # 1 = Precise, 0 = Fast
+

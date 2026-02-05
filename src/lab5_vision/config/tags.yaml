@@ -1,0 +1,7 @@
+apriltag:
+  ros__parameters:
+    image_transport: raw    # Listen to raw image topic
+    family: 36h11           # The standard tag family
+    size: 0.150              # 5cm tag size (Measure your printout!)
+    max_hamming: 0          # Error correction strictness
+    z_up: true              # Point Z axis up (instead of into the tag)
