@@ -4,90 +4,71 @@ from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 import math
 
-class OdomDriver(Node):
+class AutonomousDriver(Node):
     def __init__(self):
-        super().__init__('odom_driver')
-        # We publish commands for your bridge to pick up
+        super().__init__('autonomous_driver')
         self.publisher_ = self.create_publisher(Twist, '/cmd_vel', 10)
-        # We subscribe to the free Odometry the manufacturer node is providing
         self.subscription = self.create_subscription(Odometry, '/odom', self.odom_callback, 10)
 
-        self.state = 'FORWARD_1'
-        self.start_x = None
-        self.start_y = None
-        self.start_yaw = None
+        # --- SKELETON VARIABLES ---
+        self.start_time = self.get_clock().now()
         self.current_x = 0.0
         self.current_y = 0.0
         self.current_yaw = 0.0
 
-        self.target_distance = 3.0 # Meters
+        # TODO 1: Add variables for your state machine (e.g., self.state = 'FORWARD_1')
+        # TODO 2: Add variables to store your starting X, Y, and Yaw so you can measure distance traveled.
+
         self.timer = self.create_timer(0.1, self.control_loop)
-        self.get_logger().info('Autonomous Driver Online: Waiting for Odometry...')
+        self.get_logger().info('Driver Online. Executing 1-second blind drive...')
 
     def get_yaw(self, q):
-        # Convert quaternion to Euler angle (Yaw)
+        """Converts a Quaternion into a standard Euler Yaw angle."""
         siny_cosp = 2 * (q.w * q.z + q.x * q.y)
         cosy_cosp = 1 - 2 * (q.y * q.y + q.z * q.z)
         return math.atan2(siny_cosp, cosy_cosp)
 
     def odom_callback(self, msg):
-        self.current_x = msg.pose.pose.position.x
-        self.current_y = msg.pose.pose.position.y
-        self.current_yaw = self.get_yaw(msg.pose.pose.orientation)
-
-        if self.start_x is None:
-            self.start_x = self.current_x
-            self.start_y = self.current_y
-            self.start_yaw = self.current_yaw
-            self.get_logger().info('Odometry locked. Starting 3m drive.')
+        """Updates internal variables with the latest odometry data."""
+        # TODO 3: Extract the X and Y positions from the msg object.
+        # Hint: msg.pose.pose.position.x
+        
+        # TODO 4: Extract the orientation and pass it to self.get_yaw() to get your current angle.
+        pass
 
     def control_loop(self):
-        if self.start_x is None:
-            return
-
         msg = Twist()
-        # Calculate distance: d = sqrt((x2-x1)^2 + (y2-y1)^2)
-        dist = math.sqrt((self.current_x - self.start_x)**2 + (self.current_y - self.start_y)**2)
 
-        if self.state == 'FORWARD_1':
-            if dist < self.target_distance:
-                msg.linear.x = 0.3  # Drive forward at 0.3 m/s
-            else:
-                self.get_logger().info(f'Reached {dist:.2f}m. Executing U-Turn.')
-                self.state = 'TURN'
-                self.start_yaw = self.current_yaw
+        # ==========================================================
+        # CURRENT BEHAVIOR: 1-SECOND BLIND TIMER DRIVE
+        # ==========================================================
+        elapsed = (self.get_clock().now() - self.start_time).nanoseconds / 1e9
+        if elapsed < 1.0:
+            msg.linear.x = 0.15  # Drive forward slowly
+        else:
+            msg.linear.x = 0.0   # Stop
 
-        elif self.state == 'TURN':
-            # Calculate how far we've turned
-            yaw_diff = abs(self.current_yaw - self.start_yaw)
-            if yaw_diff > math.pi: yaw_diff -= 2 * math.pi
-            if yaw_diff < -math.pi: yaw_diff += 2 * math.pi
-
-            if abs(yaw_diff) < math.pi * 0.90: # Turn until we are roughly 180 degrees around
-                msg.linear.x = 0.2  # Must move forward to steer
-                msg.angular.z = 1.0 # Hard left turn
-            else:
-                self.get_logger().info('U-Turn complete. Driving back 3m.')
-                self.state = 'FORWARD_2'
-                self.start_x = self.current_x
-                self.start_y = self.current_y
-
-        elif self.state == 'FORWARD_2':
-            if dist < self.target_distance:
-                msg.linear.x = 0.3
-            else:
-                self.get_logger().info('Mission Complete. Stopping.')
-                self.state = 'DONE'
-
-        elif self.state == 'DONE':
-            msg.linear.x = 0.0
-            msg.angular.z = 0.0
+        # ==========================================================
+        # CHALLENGE: REPLACE THE ABOVE WITH YOUR STATE MACHINE
+        # ==========================================================
+        # TODO 5: Calculate Euclidean distance: d = sqrt((current_x - start_x)^2 + (current_y - start_y)^2)
+        
+        # TODO 6: Build the State Machine
+        # IF state == 'FORWARD_1':
+        #     Drive forward until distance >= 3.0 meters. Then switch state to 'TURN'.
+        # ELIF state == 'TURN':
+        #     Publish angular velocity (msg.angular.z) AND slight linear velocity (Ackermann constraint!)
+        #     until your current_yaw is roughly 180 degrees (math.pi) from your start_yaw.
+        # ELIF state == 'FORWARD_2':
+        #     Drive forward until you return to the origin.
+        # ELIF state == 'DONE':
+        #     Stop all motors.
 
         self.publisher_.publish(msg)
 
 def main(args=None):
     rclpy.init(args=args)
-    rclpy.spin(OdomDriver())
+    rclpy.spin(AutonomousDriver())
     rclpy.shutdown()
 
 if __name__ == '__main__':
