@@ -17,8 +17,8 @@ class FakeGodNode(Node):
         msg.theta = -0.2 
         self.gps_pub.publish(msg)
 
-def main():
-    rclpy.init()
+def main(args=None):
+    rclpy.init(args=args)
     rclpy.spin(FakeGodNode())
     rclpy.shutdown()
 

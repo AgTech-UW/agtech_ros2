@@ -35,7 +35,7 @@ class SnakeTractor(Node):
         self.Kp_ang  = 2.0   
         
         # AUTOMATIC SETUP
-        print("🚜 TRACTOR ONLINE. Setting up field...")
+        print("TRACTOR ONLINE. Setting up field...")
         self.setup_field() 
         
         # Start the brain only AFTER setup

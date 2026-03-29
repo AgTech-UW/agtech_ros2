@@ -6,8 +6,4 @@ log/
 __pycache__/
 *.pyc
 *_key.py
-src/lab3_safety_brake
-src/lab4_services/
-src/lab5_vision/
-src/lab6_vision/
-src/lab7_autosteer/
+src/

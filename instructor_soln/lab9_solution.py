@@ -72,8 +72,16 @@ class Lab9MasterSolution(Node):
             cmd.angular.z = 0.0
             self.get_logger().info("Target Reached. Holding position.")
         
-        self.pub_vel.publish(cmd)
+        # ==========================================================
+        # HARDWARE SAFETY CLAMP
+        # ==========================================================
+        if cmd.angular.z > 0.5:
+            cmd.angular.z = 0.5
+        elif cmd.angular.z < -0.5:
+            cmd.angular.z = -0.5
 
+        self.pub_vel.publish(cmd)
+        
 def main(args=None):
     rclpy.init(args=args)
     rclpy.spin(Lab9MasterSolution())

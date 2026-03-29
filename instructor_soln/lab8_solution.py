@@ -43,52 +43,63 @@ class Lab8MasterSolution(Node):
             self.get_logger().info('Odometry locked. Starting 3m drive.')
 
     def control_loop(self):
-        if self.start_x is None:
-            return
+            if self.start_x is None:
+                return
 
-        msg = Twist()
-        
-        # Calculate Euclidean distance from the starting point of the current state
-        dist = math.sqrt((self.current_x - self.start_x)**2 + (self.current_y - self.start_y)**2)
+            msg = Twist()
 
-        if self.state == 'FORWARD_1':
-            if dist < self.target_distance:
-                msg.linear.x = 0.15
-            else:
-                self.get_logger().info(f'Reached {dist:.2f}m. Executing U-Turn.')
-                self.state = 'TURN'
-                self.start_yaw = self.current_yaw # Reset start yaw for the turn
+            if self.state == 'FORWARD_1':
+                # Calculate distance from the start of FORWARD_1
+                dist = math.sqrt((self.current_x - self.start_x)**2 + (self.current_y - self.start_y)**2)
+                
+                if dist < self.target_distance:
+                    msg.linear.x = 0.15
+                else:
+                    self.get_logger().info(f'Reached {dist:.2f}m. Executing U-Turn.')
+                    self.state = 'TURN'
+                    self.start_yaw = self.current_yaw # Reset start yaw for the turn
 
-        elif self.state == 'TURN':
-            # Calculate absolute yaw difference
-            yaw_diff = abs(self.current_yaw - self.start_yaw)
-            
-            # Handle the 360-degree wrap around (e.g., crossing from 3.14 to -3.14)
-            if yaw_diff > math.pi: 
-                yaw_diff = (2 * math.pi) - yaw_diff
+            elif self.state == 'TURN':
+                # Calculate absolute yaw difference
+                yaw_diff = abs(self.current_yaw - self.start_yaw)
+                
+                # Handle the 360-degree wrap around
+                if yaw_diff > math.pi: 
+                    yaw_diff = (2 * math.pi) - yaw_diff
 
-            # Turn until roughly ~162 degrees (0.90 * Pi) to account for momentum/drift
-            if yaw_diff < math.pi * 0.90: 
-                msg.linear.x = 0.15  # Must move forward (Ackermann constraint)
-                msg.angular.z = 0.8  # Turn steering servo
-            else:
-                self.get_logger().info('U-Turn complete. Driving back 3m.')
-                self.state = 'FORWARD_2'
-                self.start_x = self.current_x # Reset start position for the return trip
-                self.start_y = self.current_y
+                # Turn until roughly ~162 degrees (0.90 * Pi) to account for momentum/drift
+                if yaw_diff < math.pi * 0.90: 
+                    msg.linear.x = 0.15  # Must move forward
+                    msg.angular.z = 0.5  # CRITICAL FIX: Max servo limit is 0.5
+                else:
+                    self.get_logger().info('U-Turn complete. Driving back 3m.')
+                    self.state = 'FORWARD_2'
+                    self.start_x = self.current_x # Reset start position for the return trip
+                    self.start_y = self.current_y
 
-        elif self.state == 'FORWARD_2':
-            if dist < self.target_distance:
-                msg.linear.x = 0.15
-            else:
-                self.get_logger().info('Mission Complete. Stopping.')
-                self.state = 'DONE'
+            elif self.state == 'FORWARD_2':
+                # Calculate distance from the start of FORWARD_2
+                dist = math.sqrt((self.current_x - self.start_x)**2 + (self.current_y - self.start_y)**2)
+                
+                if dist < self.target_distance:
+                    msg.linear.x = 0.15
+                else:
+                    self.get_logger().info('Mission Complete. Stopping.')
+                    self.state = 'DONE'
 
-        elif self.state == 'DONE':
-            msg.linear.x = 0.0
-            msg.angular.z = 0.0
+            elif self.state == 'DONE':
+                msg.linear.x = 0.0
+                msg.angular.z = 0.0
 
-        self.publisher_.publish(msg)
+            # ==========================================
+            # RESTORED HARDWARE CLAMP 
+            # ==========================================
+            if msg.angular.z > 0.5:
+                msg.angular.z = 0.5
+            elif msg.angular.z < -0.5:
+                msg.angular.z = -0.5
+
+            self.publisher_.publish(msg)
 
 def main(args=None):
     rclpy.init(args=args)

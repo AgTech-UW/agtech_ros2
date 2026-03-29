@@ -8,7 +8,7 @@ class HardwareTractor(Node):
     def __init__(self):
         super().__init__('hardware_tractor')
         
-        # 1. THE PUBLISHER: Sends math to your Lab 8 'uofw_bridge'
+        # 1. THE PUBLISHER: Sends math to your motor controller
         self.pub_vel = self.create_publisher(Twist, '/cmd_vel', 10)
         
         # 2. THE SUBSCRIBER: Listens to the God Node for our location
@@ -48,12 +48,20 @@ class HardwareTractor(Node):
         # Step A: Calculate the X and Y errors.
         # Step B: Calculate the Euclidean distance to the target.
         # Step C: Calculate the angle_to_goal (using math.atan2).
-        # Step D: Calculate the angle_error and normalize it.
+        # Step D: Calculate the angle_error and normalize it using self.normalize_angle().
         # Step E: Write the P-Controller logic to set cmd.linear.x and cmd.angular.z
         #         (Make sure to cap your max speed so the robot doesn't fly off the table!)
         # Step F: Write an IF statement to stop the robot if the distance is < 0.15 meters.
         
         
+        # ==========================================================
+        # HARDWARE SAFETY CLAMP (DO NOT REMOVE)
+        # ==========================================================
+        if cmd.angular.z > 0.5:
+            cmd.angular.z = 0.5
+        elif cmd.angular.z < -0.5:
+            cmd.angular.z = -0.5
+
         self.pub_vel.publish(cmd)
 
 def main(args=None):
