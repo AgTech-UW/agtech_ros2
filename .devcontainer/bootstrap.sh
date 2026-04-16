@@ -28,8 +28,8 @@ if [ -f /workspaces/agtech_ros2/config/default_cam.yaml ]; then
     cp /workspaces/agtech_ros2/config/default_cam.yaml /root/.ros/camera_info/
     echo "  Calibration installed."
 else
-    echo "  WARNING: no calibration file found at config/default_cam.yaml"
-    echo "  Students: you'll need to run the checkerboard calibration yourself."
+    echo "  WARNING: no calibration file at config/default_cam.yaml"
+    echo "  Students: run the checkerboard calibration yourself."
 fi
 
 echo "Mystery folder (easter egg)..."
