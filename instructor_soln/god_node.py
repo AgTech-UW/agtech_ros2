@@ -12,6 +12,8 @@ class PhysicalGodNode(Node):
         
         self.tf_buffer = Buffer()
         self.tf_listener = TransformListener(self.tf_buffer, self)
+        self.declare_parameter('child_frame', 'tag36h11:0')
+        self.child_frame = self.get_parameter('child_frame').value
         self.timer = self.create_timer(0.1, self.broadcast_gps)
         
         self.get_logger().info("PHYSICAL GOD NODE ONLINE: Translating Camera TF to GPS...")
@@ -19,11 +21,11 @@ class PhysicalGodNode(Node):
     def broadcast_gps(self):
         try:
             # Look up the tractor's physical tag relative to the arena center
-            t = self.tf_buffer.lookup_transform('arena', 'tractor_tag', rclpy.time.Time())
+            t = self.tf_buffer.lookup_transform('arena', self.child_frame, rclpy.time.Time())
             
             msg = Pose()
-            msg.x = t.transform.translation.x
-            msg.y = t.transform.translation.y
+            msg.x = -t.transform.translation.x
+            msg.y = -t.transform.translation.y
             
             # Quaternion to Yaw Math (Hidden from students!)
             q = t.transform.rotation
