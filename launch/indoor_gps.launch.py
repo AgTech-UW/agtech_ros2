@@ -31,7 +31,7 @@ def generate_launch_description():
         Node(
             package='apriltag_ros', executable='apriltag_node', name='apriltag',
             parameters=[{
-                'family': '36h11', 'size': 0.150, 'max_hamming': 0,
+                'family': '36h11', 'size': 0.12, 'max_hamming': 0,
                 'z_up': True, 'decimate': 2.0, 'threads': 4,
                 'image_transport': 'compressed',
             }],
