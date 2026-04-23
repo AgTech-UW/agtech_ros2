@@ -1,20 +1,12 @@
 #!/usr/bin/env python3
 """
-=============================================================================
-  COLOUR CALIBRATOR — HSV Range Tuner for Lab 6
-  AgTech ROS Course | PHYS-4000 / AG-3000
-=============================================================================
-
-  Interactive tool for finding HSV thresholds to detect red weeds.
-  Adjust the sliders until your mask shows ONLY the red balls.
-
-  Usage:
-    python3 colour_calibrator.py
-
-  Controls:
-    p  = print current HSV values (copy-paste into weed_detector.py)
-    q  = quit
+Lab 6: Colour Calibrator - interactive HSV threshold tuner.
+ 
+Controls:
+  p  - print current HSV values (copy-paste into weed_detector.py)
+  q  - quit
 """
+
 import cv2
 import numpy as np
 
