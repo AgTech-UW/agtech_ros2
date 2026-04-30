@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""
+Lab 2: Square Drawer.
+ 
+Publishes: /turtle1/cmd_vel (geometry_msgs/Twist)  - Velocity commands
+"""
 import rclpy
 from rclpy.node import Node
 from geometry_msgs.msg import Twist
@@ -6,26 +11,35 @@ from geometry_msgs.msg import Twist
 
 class SquareDrawer(Node):
     def __init__(self):
+        # Give the node a name for the logs
         super().__init__('square_drawer_node')
-        # Publisher: Sends messages to the turtle's velocity topic
-        self.publisher_ = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
+
+        # 1. PUBLISHER: Speak "Twist" messages to '/turtle1/cmd_vel'
+        self.publisher_ = self.create_publisher(
+            Twist, '/turtle1/cmd_vel', 10)
+
+        # 2. TIMER: Wake up 'move_turtle_logic' every 1.0 seconds
         self.timer = self.create_timer(1.0, self.move_turtle_logic)
+
         self.step = 0
         self.get_logger().info("Square Drawer Node has started!")
 
     def move_turtle_logic(self):
-        # Create a message object (The "Letter" we are mailing)
+        # Create a new message to send
         msg = Twist()
-        # Logic: Each timer tick alternates between driving and turning
+
+        # Logic: Even steps = Drive, Odd steps = Turn
+        # This uses the Modulo operator (%) to check for remainders
         if self.step % 2 == 0:
-            msg.linear.x = 2.0  # Drive Forward
+            msg.linear.x = 2.0    # Drive forward (m/s)
             msg.angular.z = 0.0
-            self.get_logger().info("Driving Forward...")
+            self.get_logger().info("Driving forward...")
         else:
             msg.linear.x = 0.0
-            msg.angular.z = 1.57  # Turn 90 degrees (approx)
+            msg.angular.z = 1.57  # Turn 90 degrees (approx) in radians
             self.get_logger().info("Turning...")
-        # Publish the message (Mail the letter)
+
+        # Send the message using the publisher we saved in 'self'
         self.publisher_.publish(msg)
         self.step += 1
 

@@ -1,21 +1,10 @@
 #!/usr/bin/env python3
 """
-=============================================================================
-  WEED DETECTOR — Red Ball Detection for Lab 6
-  AgTech ROS Course | PHYS-4000 / AG-3000
-=============================================================================
-
-  Subscribes to /image_raw, detects red spherical weeds using HSV + circularity
-  filtering, and publishes a spray trigger on /tractor/spray.
-
-  Students fill in the HSV values (TODO below) using colour_calibrator.py.
-
-  Subscribes:
-    /image_raw                (sensor_msgs/Image)  — Camera feed
-
-  Publishes:
-    /weed_detector/debug      (sensor_msgs/Image)  — Frame with weeds outlined
-    /tractor/spray            (std_msgs/Bool)      — True when weed detected
+Lab 6: Weed Detector - red ball detection (HSV + circularity).
+ 
+Subscribes: /image_raw              (sensor_msgs/Image)  - Camera feed
+Publishes:  /weed_detector/debug    (sensor_msgs/Image)  - Frame with weeds outlined
+            /tractor/spray          (std_msgs/Bool)      - True when weed detected
 """
 import rclpy
 from rclpy.node import Node

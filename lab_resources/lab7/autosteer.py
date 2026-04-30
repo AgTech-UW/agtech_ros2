@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Lab 7: Autosteer - breadcrumb waypoint chasing with P-controller.
- 
+
 Subscribes: /turtle1/pose      (turtlesim/Pose)       - Robot position & heading
 Publishes:  /turtle1/cmd_vel   (geometry_msgs/Twist)  - Velocity commands
 """
@@ -86,7 +86,7 @@ class Autosteer(Node):
 
     def update_pose(self, msg):
         if not self.first_pose_received:
-            self.get_logger().info("First pose received — starting control.")
+            self.get_logger().info("First pose received - starting control.")
             self.first_pose_received = True
         self.pose = msg
 
@@ -124,7 +124,7 @@ class Autosteer(Node):
             msg.linear.x = min(2.0, self.Kp_linear * distance)
             msg.angular.z = self.Kp_angular * angle_error
         else:
-            # Reached this breadcrumb — advance to next
+            # Reached this breadcrumb - advance to next
             self.current_wp_index += 1
 
             # Log progress every 20 breadcrumbs so students can watch it work
