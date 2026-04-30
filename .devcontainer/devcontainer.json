@@ -21,5 +21,5 @@
       "--device=/dev/video2:/dev/video2",
       "--shm-size=512m"
   ],
-  "postCreateCommand": "bash .devcontainer/bootstrap.sh"
+"postCreateCommand": "sed -i 's/\\r$//' .devcontainer/bootstrap.sh && bash .devcontainer/bootstrap.sh"
 }
