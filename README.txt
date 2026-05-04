@@ -1,7 +1,7 @@
 # AgTech ROS 2 Workshop
 
-Welcome! This repository is the development environment for the **AgTech Spring
-Workshop**, a 10-lab introduction to ROS 2 framed around building an autonomous
+Welcome! This repository is the development environment for the ROS2 Spring
+Workshop, a 10-lab introduction to ROS 2 framed around building an autonomous
 agricultural robot.
 
 The workshop takes you from "what is a terminal" to writing closed-loop computer
@@ -23,8 +23,8 @@ or Linux), you'll be working inside the same Linux container as everyone else.
 - The [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
   extension for VS Code
 
-If any of these are unfamiliar, don't worry. **Lab 1 walks through the entire
-install** from scratch, including BIOS virtualization checks and platform-specific
+If any of these are unfamiliar, don't worry. Lab 1 walks through the entire
+install from scratch, including BIOS virtualization checks and platform-specific
 gotchas.
 
 ## Quick Start
@@ -32,27 +32,28 @@ gotchas.
 1. Clone this repo somewhere outside cloud-sync folders (avoid OneDrive, iCloud,
    Dropbox; they will fight the container and you will lose).
 2. Open the folder in VS Code.
-3. A popup appears in the bottom right: **"Reopen in Container"**. Click it.
+3. A popup appears in the bottom right: "Reopen in Container". Click it.
    *(If it doesn't appear, press F1 and run "Dev Containers: Reopen in Container".)*
 4. Wait 5 to 10 minutes for the first build. Subsequent opens are instant.
 5. When the terminal prompt changes to `root@hostname:/workspaces/agtech_ros2#`,
    you're inside the container. Run `ros2` to confirm everything works.
 
 For the full walkthrough, including troubleshooting for graphics, USB cameras,
-and platform-specific quirks, start with **Lab 1** in the course materials.
+and platform-specific quirks, start with Lab 1 in the course materials.
 
 ## Platform Notes
 
-- **Windows:** You'll need WSL 2. Lab 1's Appendix B walks through this. USB
+- Windows: You'll need WSL 2. Lab 1's Appendix B walks through this. USB
   camera passthrough (Labs 5 and 6) requires `usbipd-win`.
-- **macOS:** Display and core ROS 2 work fine via XQuartz. **USB camera passthrough
-  is not supported** by Docker Desktop on Mac in any reliable way. You'll need
+- macOS: Display and core ROS 2 work fine via XQuartz. USB camera passthrough
+  is not supported by Docker Desktop on Mac in any reliable way. You'll need
   to pair up with a Windows or Linux classmate for Labs 5 and 6. Everything
   else works on your machine.
-- **Linux:** Native and easiest. Lab 1 covers the X11 permission step you'll
+- Linux: Native and easiest. Lab 1 covers the X11 permission step you'll
   need for graphical applications.
 
 ## Repo Layout
+
 agtech_ros2/
 ├── .devcontainer/        # Container config; don't modify unless you know why
 ├── src/                  # Your code lives here, one package per lab
@@ -78,15 +79,15 @@ ros2 node list
 # Inspect a topic
 ros2 topic echo /topic_name
 
-You'll need to `source install/setup.bash` in **every new terminal**. It's the
+You'll need to `source install/setup.bash` in every new terminal. It's the
 most common reason "package not found" errors happen.
 
 ## Getting Help
 
-- **Stuck on a lab?** Each lab PDF has a Troubleshooting section at the end.
-- **Container won't build, or behaves weirdly?** Press F1 and run
+- Stuck on a lab? Each lab PDF has a Troubleshooting section at the end.
+- Container won't build, or behaves weirdly? Press F1 and run
   "Dev Containers: Rebuild Container". Takes about 5 minutes and fixes most things.
-- **Found a bug or typo in the materials?** Open an issue or talk to your
+- Found a bug or typo in the materials? Open an issue or talk to your
   instructor.
 
 ## Acknowledgements
