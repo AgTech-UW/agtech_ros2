@@ -80,10 +80,10 @@ ros2 node list
 
 # Inspect a topic
 ros2 topic echo /topic_name
-
+```
 You'll need to `source install/setup.bash` in every new terminal. It's the
 most common reason "package not found" errors happen.
-```
+
 
 ## Getting Help
 
