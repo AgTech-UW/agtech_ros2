@@ -47,6 +47,10 @@ class WeedDetector(Node):
             return
 
         # 3. CONVERT TO HSV
+        # Note: OpenCV is BGR-native (not RGB!), so we use COLOR_BGR2HSV.
+        # Many online tutorials show COLOR_RGB2HSV -- those are for libraries
+        # like Pillow or matplotlib. Using the wrong one swaps your red and
+        # blue channels and your detector silently looks for blue instead.
         hsv_image = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)
 
         # 4. INSERT YOUR CALIBRATED NUMBERS HERE
@@ -68,7 +72,11 @@ class WeedDetector(Node):
             area = cv2.contourArea(contour)
             perimeter = cv2.arcLength(contour, True)
 
-            # Filter 1: Size (ignore tiny specks < 500 pixels)
+            # Filter 1: Size (Ignore tiny specks < 500 pixels)
+            # 500 px ~= a 22x22 blob. Tune UP if you're far from the marker
+            # (the ball will look small in the frame); tune DOWN if you're
+            # close. Without this filter, JPEG compression artifacts and
+            # small reflections trigger false detections every frame.
             if area > 500 and perimeter > 0:
 
                 # Filter 2: Shape (circularity)
