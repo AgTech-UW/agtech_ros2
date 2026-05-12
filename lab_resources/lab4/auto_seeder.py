@@ -73,7 +73,7 @@ class AutoSeeder(Node):
 
     def pose_callback(self, msg):
         """Cache the latest pose. Runs every time turtle1 publishes."""
-        # This is the simplest callback you'll write all semester:
+        # This is the simplest callback you'll write all spring:
         # just remember what we heard. The timer does the work.
         self.latest_pose = msg
 
