@@ -2,28 +2,8 @@
 """
 Lab 4 helper: Keyboard Trigger.
 
-Reads keystrokes from this terminal and publishes std_msgs/Empty to
-/plant_seed every time you press SPACE. Press 'q' to quit.
-
-This is intentionally a tiny separate node. The seeder you write
-doesn't read the keyboard at all -- it just subscribes to /plant_seed
-and plants when a message arrives. That means the SAME seeder code
-would work if the trigger came from:
-
-    - This script (your keyboard)
-    - A CLI command:  ros2 topic pub --once /plant_seed std_msgs/msg/Empty {}
-    - A button on a physical controller
-    - A footswitch wired up on a real tractor
-    - Another autonomous node deciding when to plant
-
-The seeder doesn't know or care. That decoupling is the whole point.
-
-Publishes: /plant_seed (std_msgs/Empty)
-
-NOTE: this script puts your terminal into "cbreak" mode so it can read
-single keypresses without you hitting Enter. If the script crashes
-mid-run and your terminal looks weird afterwards, run `reset` and it
-will recover.
+Publishes std_msgs/Empty to /plant_seed on SPACE. Press 'q' to quit.
+If your terminal looks weird after a crash, run `reset`.
 """
 import sys
 import select
