@@ -18,7 +18,7 @@
   "runArgs": [
       "--net=host",
       "--privileged",
-      "--device=/dev/video2:/dev/video2",
+      "--device=/dev/video0:/dev/video0",
       "--shm-size=512m"
   ],
 "postCreateCommand": "sed -i 's/\\r$//' .devcontainer/bootstrap.sh && bash .devcontainer/bootstrap.sh"
